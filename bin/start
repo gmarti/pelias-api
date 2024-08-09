@@ -1,2 +1,2 @@
 #!/bin/bash
-exec node index.js
+exec node --require dd-trace/init index.js
