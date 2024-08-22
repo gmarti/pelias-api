@@ -1,6 +1,8 @@
+const compression = require('express-compression-current');
+
 var app = require('express')();
 
-app.use( require('express-compression-current') );
+app.use( compression() );
 
 var peliasConfig = require( 'pelias-config' ).generate(require('./schema'));
 
