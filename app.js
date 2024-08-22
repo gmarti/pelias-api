@@ -1,5 +1,7 @@
 var app = require('express')();
 
+app.use( require('express-compression-current') );
+
 var peliasConfig = require( 'pelias-config' ).generate(require('./schema'));
 
 if( peliasConfig.api.accessLog ){
@@ -13,6 +15,8 @@ app.use( require('./middleware/cors') );
 app.use( require('./middleware/robots') );
 app.use( require('./middleware/options') );
 app.use( require('./middleware/jsonp') );
+
+
 
 /** ----------------------- routes ----------------------- **/
 
