@@ -29,9 +29,9 @@ module.exports = function( vs ){
   const fuzziness = vs.var('fuzzy:fuzziness').get();
 
   // return the view rendered using the copy
-  return {
+  return fuzziness === 0 ? {
     'constant_score': {
-      'filter': fuzziness === 0 ? ngrams_strict( vsCopy ) : ngrams_fuzzy( vsCopy )
+      'filter':  ngrams_strict( vsCopy ) 
     }
-  };
+  } : ngrams_fuzzy( vsCopy );
 };
