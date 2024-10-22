@@ -10,11 +10,11 @@ module.exports = function (vs) {
         return null;
     }
 
-    var vsCopy = new peliasQuery.Vars( vs.export() );
+    var vsCopy = new peliasQuery.Vars(vs.export());
     vsCopy.var('fuzzy:fuzziness', 0);
 
     // return the simple view for address queries
-    if( vsCopy.isset('input:street') ){ return ngrams_last_token_only(vsCopy); }
+    if (vsCopy.isset('input:street')) { return ngrams_last_token_only(vsCopy, true); }
 
     // get a copy of the *tokens_incomplete* tokens produced from the input:name
     var tokens = vsCopy.var('input:name:tokens_incomplete').get();
@@ -24,11 +24,11 @@ module.exports = function (vs) {
 
     // return the simple view for queries with no complete tokens
     var complete_tokens = vsCopy.var('input:name:tokens_complete').get();
-    if (!complete_tokens || complete_tokens.length < 1) { return ngrams_last_token_only(vsCopy); }
+    if (!complete_tokens || complete_tokens.length < 1) { return ngrams_last_token_only(vsCopy, true); }
 
     // return the simple view when every complete token is numeric
     var all_complete_tokens_numeric = complete_tokens.every(token => !token.replace(/[0-9]/g, '').length);
-    if (all_complete_tokens_numeric) { return ngrams_last_token_only(vsCopy); }
+    if (all_complete_tokens_numeric) { return ngrams_last_token_only(vsCopy, true); }
 
     return null;
 };
