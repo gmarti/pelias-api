@@ -6,7 +6,7 @@
   "homepage": "https://github.com/pelias/api",
   "license": "MIT",
   "main": "index.js",
-  "bin": "./bin/start",
+  "bin": "index.js",
   "scripts": {
     "ciao": "node node_modules/ciao/bin/ciao -c test/ciao.json test/ciao",
     "coverage": "node_modules/.bin/istanbul cover test/unit/run.js",

@@ -1,3 +1,4 @@
+const tracer = require('dd-trace').init();
 const logger = require('pelias-logger').get('api');
 const type_mapping = require('./helper/type_mapping');
 
